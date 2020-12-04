@@ -10,9 +10,7 @@ const Home: React.FC = () => {
   return (
     <Container>
       <Head>
-
-        <title>Rama Records</title>
-
+        <title>Rama Records - Principal</title>
       </Head>
 
       <DefaultPage>

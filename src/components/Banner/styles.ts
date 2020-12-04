@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    video {
+    width: 100%;
+
+    img {
         width: 100%;
     }
 `;
