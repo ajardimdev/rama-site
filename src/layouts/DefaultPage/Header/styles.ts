@@ -36,6 +36,8 @@ export const Container = styled.header<IContainer>`
 
         a {
             padding: 12px;
+            color: ${_ => _.theme.colors.text};
+            text-decoration: none;
         }
     }
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Logo from '../../../assets/logo-horizontal-white_90.svg'
 import Search from '../../../assets/search.svg'
+import Link from 'next/link'
 
 import { Container } from './styles'
 
@@ -8,11 +9,40 @@ let listener
 
 const Menu = () => (
     <ul id='menu'>
-        <li><a>A Rama</a></li>
-        <li><a>Mídia</a></li>
-        <li><a>Artistas</a></li>
-        <li><a>TV Rama</a></li>
-        <li><a>Loja</a></li>
+        <li>
+            <Link href='/sobre-a-rama'>
+                <a>A Rama</a>
+            </Link>
+        </li>
+
+        <li>
+            <Link href='/noticias'>
+                <a>Notícias</a>
+            </Link>
+        </li>
+
+        <li>
+            <Link href='/artistas'>
+                <a>Artistas</a>
+            </Link>
+        </li>
+
+        <li>
+            <Link href='/lancamentos'>
+                <a>Lançamentos</a>
+            </Link>
+
+        </li>
+
+        <li>
+            <Link href='/tv-rama'>
+                <a>TV Rama</a>
+            </Link>
+        </li>
+
+        <li>
+            <a href="https://google.com" target="_blank">Loja</a>
+        </li>
     </ul>
 )
 
@@ -49,7 +79,9 @@ const Header: React.FC = () => {
   return (
     <Container scrollY={scrollY} >
         <div className="header">
-            <Logo />
+            <Link href="/">
+                <Logo />
+            </Link>
             <nav id='menu-mobile' className={toggleMobile ? 'on' : ''} >
 
                 <SearchButton search={search} />
