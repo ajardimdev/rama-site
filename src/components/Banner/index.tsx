@@ -1,18 +1,45 @@
-import React from 'react';
+import { Console } from 'console';
+import React, { useEffect, useState } from 'react';
 
-import { Container } from './styles';
+import { base_url } from '../../apis/rama-cms/constants';
+import { increment } from './functions';
+import { Container, Image } from './styles';
 
-const Banner: React.FC = () => {
-  return (
-    <Container>
-        {/* <video autoPlay muted loop  id="video">
-            <source src="/demo.mp4" type="video/mp4" />
-            Your browser does not support HTML5 video.
-        </video> */}
+const image_url = base_url
 
-        <img src="https://loremflickr.com/g/1280/720/cat" alt="random" />
-    </Container>
-  );
+function Banner({ images }) {
+    const [selected, setSelected] = useState<number>(0)
+
+    useEffect(() => {
+        if (!images || (images &&  !images.length)){
+            return;
+        }
+
+        setTimeout(() => {
+            const limit = images.length -1
+            const index = increment(0, selected, limit)
+
+            setSelected(index)
+        }, 6000)
+    }, [selected])
+
+
+    if (!images || (images &&  !images.length)){
+        return null;
+    }
+
+     return (
+        <Container  >
+            {/* <video autoPlay muted loop  id="video">
+                <source src="/demo.mp4" type="video/mp4" />
+            </video> */}
+
+            {images.map((image,index) => {
+                return <Image selected={selected === index} src={`${image_url}${image.media.url}`} alt={image.text} title={images[selected].text} />
+            })}
+
+        </Container>
+    );
 };
 
 export default Banner;
