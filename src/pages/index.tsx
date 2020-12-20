@@ -54,11 +54,8 @@ const Home: React.FC<StaticProps> = ({ images }) => {
       <Head>
         <title>Rama Records - Principal</title>
       </Head>
-
       <DefaultPage>
-
         <Banner images={images} />
-
       </DefaultPage>
     </Container>
   )
