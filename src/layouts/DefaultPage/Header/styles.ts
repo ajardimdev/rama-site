@@ -25,20 +25,43 @@ export const Container = styled.header<IContainer>`
         align-items: center;
     }
 
+    .header svg {
+        cursor:pointer;
+    }
+
 
     ul {
         padding:0px;
         margin:0px;
         list-style:none;
+        display: flex;
+        flex-direction: row;
     }
 
     li {
-        display: inline;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        &:hover{
+            a {
+                font-size: 22px;
+            }
+        }
 
         a {
+            position: relative;
+            cursor: pointer;
             padding: 12px;
             color: ${_ => _.theme.colors.text};
             text-decoration: none;
+            transition: all .2s ease-in-out;
+
+            -webkit-transition: font-size 1s;
+            -moz-transition: font-size 1s;
+            -o-transition: font-size 1s;
+            transition: font-size 1s;
+
         }
     }
 

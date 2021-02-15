@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { displayPartsToString } from 'typescript';
 
-export const Container = styled.div`
+export const Container = styled.section`
     width: 100%;
     max-height: 100vh;
     overflow:hidden;
@@ -13,11 +13,9 @@ interface ImageProps {
 }
 export const Image = styled.img<ImageProps>`
     display: ${props => props.selected ? 'block': 'none'};
+    min-width: 890px;
     width: 100%;
     animation: fadein 2s;
-    -moz-animation: fadein 2s; /* Firefox */
-    -webkit-animation: fadein 2s; /* Safari and Chrome */
-    -o-animation: fadein 2s; /* Opera */
 
     @keyframes fadein {
         from {

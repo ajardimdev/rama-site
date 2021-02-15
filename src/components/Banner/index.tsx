@@ -11,7 +11,7 @@ function Banner({ images }) {
     const [selected, setSelected] = useState<number>(0)
 
     useEffect(() => {
-        if (!images || (images &&  !images.length)){
+        if (!images || (images &&  (!images.length || images.length == 1 ))){
             return;
         }
 
@@ -22,7 +22,6 @@ function Banner({ images }) {
             setSelected(index)
         }, 6000)
     }, [selected])
-
 
     if (!images || (images &&  !images.length)){
         return null;
@@ -35,7 +34,7 @@ function Banner({ images }) {
             </video> */}
 
             {images.map((image,index) => {
-                return <Image selected={selected === index} src={`${image_url}${image.media.url}`} alt={image.text} title={images[selected].text} />
+                return <Image key={index} selected={selected === index} src={`${image_url}${image.media.url}`} alt={image.text} title={images[selected].text} />
             })}
 
         </Container>

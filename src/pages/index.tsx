@@ -6,7 +6,9 @@ import { Container} from '../styles/pages/Home'
 import DefaultPage from '../layouts/DefaultPage'
 import Banner from '../components/Banner'
 import banner_endpoints from "../apis/rama-cms/endpoints/banner";
+import artist_endpoints from "../apis/rama-cms/endpoints/artist";
 import api from "../apis/rama-cms";
+import HighlightArtists from '../components/HighLightArtists'
 
 export const getBanners = async () => {
     const endpoint = banner_endpoints.graphql()
@@ -33,8 +35,33 @@ export const getBanners = async () => {
     }
 }
 
+export const getArtists = async () => {
+    const endpoint = artist_endpoints.graphql()
+    const { data, ok } = await api.post<any>(endpoint, {
+        query: `{
+            artists (
+                start:0,
+                limit: 50
+            ) {
+                slug,
+                name,
+                resume,
+                highlight_image {
+                    url
+                },
+                bio
+            }
+        }`
+    })
+
+    if (ok) {
+        return data.data.artists
+    }
+}
+
 interface StaticProps {
     images: BannerImagem[]
+    artists: Artist[]
 }
 
 interface BannerImagem {
@@ -44,30 +71,44 @@ interface BannerImagem {
     legend: string,
     media: Media,
 }
+interface Artist {
+    slug: string,
+    name: string,
+    resume: string,
+    highlight_image: Media,
+    bio: string
+}
 interface Media {
     url: string,
 }
 
-const Home: React.FC<StaticProps> = ({ images }) => {
+export const getStaticProps: GetStaticProps = async () => {
+    const images = await getBanners()
+    const artists = await getArtists()
+
+    return {
+        props: {
+            images,
+            artists
+        }
+    }
+}
+
+const Home: React.FC<StaticProps> = ({ images, artists }) => {
   return (
     <Container>
       <Head>
         <title>Rama Records - Principal</title>
       </Head>
+
       <DefaultPage>
         <Banner images={images} />
+        <HighlightArtists artists={artists} />
       </DefaultPage>
     </Container>
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-    const images = await getBanners()
-    return {
-        props: {
-            images
-        }
-    }
-}
+
 
 export default Home

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Logo from '../../../assets/logo-horizontal-white_90.svg'
-import Search from '../../../assets/search.svg'
+import Search from '../../../assets/search-light.svg'
 import Link from 'next/link'
 
 import { Container } from './styles'
