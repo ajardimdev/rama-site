@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head'
-import { Container} from '../../styles/pages/ARama'
+import { Container, FakeHeaderPadding} from '../../styles/pages/Artistas'
 import DefaultPage from '../../layouts/DefaultPage'
 import artist_endpoints from "../../apis/rama-cms/endpoints/artist";
 import api from "../../apis/rama-cms";
@@ -64,8 +64,9 @@ const Artistas: React.FC<StaticProps> = ({ artists }) => {
             <title>Rama Records - A Rama</title>
           </Head>
 
-          <DefaultPage>
+          <FakeHeaderPadding />
 
+          <DefaultPage>
             <HighlightArtists artists={artists} />
           </DefaultPage>
         </Container>

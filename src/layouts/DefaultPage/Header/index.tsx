@@ -9,15 +9,10 @@ let listener
 
 const Menu = () => (
     <ul id='menu'>
-        <li>
-            <Link href='/sobre-a-rama'>
-                <a>A Rama</a>
-            </Link>
-        </li>
 
         <li>
-            <Link href='/noticias'>
-                <a>Notícias</a>
+            <Link href='/a-rama'>
+                <a>Rama</a>
             </Link>
         </li>
 
@@ -28,20 +23,9 @@ const Menu = () => (
         </li>
 
         <li>
-            <Link href='/lancamentos'>
-                <a>Lançamentos</a>
+            <Link href='/estudio'>
+                <a>Estúdio</a>
             </Link>
-
-        </li>
-
-        <li>
-            <Link href='/tv-rama'>
-                <a>TV Rama</a>
-            </Link>
-        </li>
-
-        <li>
-            <a href="https://google.com" target="_blank">Loja</a>
         </li>
     </ul>
 )

@@ -15,7 +15,7 @@ export const Container = styled.header<IContainer>`
     left: 0;
     right: 0;
     min-height:100px;
-    background-color: ${({scrollY, theme}) => scrollY > 100 ? theme.colors.background  : '#0000004d'};
+    background-color: ${({scrollY, theme}) => scrollY >= 100 ? theme.colors.background  : '#0000004d'};
     z-index:2;
 
     .header {

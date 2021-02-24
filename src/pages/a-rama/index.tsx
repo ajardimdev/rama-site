@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { Container} from '../../styles/pages/ARama'
 import DefaultPage from '../../layouts/DefaultPage'
 
-const Noticias: React.FC = () => {
+const ARama: React.FC = () => {
     return (
         <Container>
           <Head>
@@ -19,4 +19,4 @@ const Noticias: React.FC = () => {
       )
 }
 
-export default Noticias;
+export default ARama;
