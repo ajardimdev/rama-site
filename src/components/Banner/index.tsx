@@ -33,7 +33,7 @@ function Banner({ images }) {
             {images.map((image,index) => {
                 if(image.type === 'video') {
                     return (
-                        <ImageDiv selected={selected === index}>
+                        <ImageDiv key={index} selected={selected === index}>
                             <video autoPlay muted loop  id="video" width="100%">
                                 <source src={`${image_url}${image.media.url}`} type="video/mp4" />
                             </video>
@@ -42,8 +42,8 @@ function Banner({ images }) {
                 }
 
                 return  (
-                    <ImageDiv selected={selected === index}>
-                        <Image key={index} src={`${image_url}${image.media.url}`} alt={image.text} width={1440} height={720} layout="responsive"/>
+                    <ImageDiv key={index}  selected={selected === index}>
+                        <Image src={`${image_url}${image.media.url}`} alt={image.text} width={1440} height={720} layout="responsive"/>
                     </ImageDiv>
                 )
             })}

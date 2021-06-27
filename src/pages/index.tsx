@@ -15,8 +15,12 @@ interface StaticProps {
     images: BannerImagem[]
     artists: Artist[]
     jobs: Job[]
+    metatags: Metatag
 }
 
+interface Metatag {
+    tags: any
+}
 interface BannerImagem {
     type: string,
     order: number,
@@ -121,28 +125,58 @@ export const getArtists = async () => {
     }
 }
 
+export const getMetatags  = async () => {
+    const endpoint = artist_endpoints.graphql()
+    const { data, ok } = await api.post<any>(endpoint, {
+        query: `{
+            metatags (
+               limit: 1,
+               where: { 
+                url : "/" 
+               }
+            ) {
+                tags
+            }
+        }`
+    })
+
+    if (ok) {
+
+        return data.data.metatags
+    }
+}
+
 export const getStaticProps: GetStaticProps = async () => {
     const images = await getBanners()
     const artists = await getArtists()
     const jobs = await getJobs()
+    const metatags = await getMetatags()
 
     return {
         props: {
             images,
             artists, 
-            jobs
+            jobs,
+            metatags: metatags && metatags.length > 0 ? metatags[0] : { tags: {}}
         }
     }
 }
 
-const Home: React.FC<StaticProps> = ({ images, artists, jobs }) => {
+const Home: React.FC<StaticProps> = ({ images, artists, jobs, metatags }) => {
   const jobsProps = { jobs, title : "Últimos Lançamentos", background: "black" }
   const artistsProps = { artists, title : "Artistas", background: "white" }
+  const tagsKeys = Object.keys(metatags.tags)
 
   return (
     <Container>
       <Head>
         <title>Rama Records - Principal</title>
+        
+        {tagsKeys.map((key, i) => (
+            <meta key={i} property={key} content={metatags.tags[key]} />
+        ))}
+
+
       </Head>
 
       <DefaultPage>

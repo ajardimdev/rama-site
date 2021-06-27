@@ -25,8 +25,13 @@ interface Media {
     url: string,
 }
 
+interface Metatag {
+    tags: any
+}
+
 interface StaticProps {
-    artist: Artist
+    artist: Artist,
+    metatags: Metatag
 }
 
 interface Job {
@@ -88,8 +93,9 @@ export const getArtist = async (slug) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const artists = await getArtists()
-    const paths = artists.map(artist => {
-        return { params: { slug: artist.slug } }
+    
+    const paths = artists.map(({ slug }) => {
+        return { params: { slug } }
     })
 
     return {
@@ -98,19 +104,42 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
 }
 
+export const getMetatags  = async (slug) => {
+    const endpoint = artist_endpoints.graphql()
+    const { data, ok } = await api.post<any>(endpoint, {
+        query: `{
+            metatags (
+               limit: 1,
+               where: { 
+                url : "/artistas/${slug}" 
+               }
+            ) {
+                tags
+            }
+        }`
+    })
+
+    if (ok) {
+
+        return data.data.metatags
+    }
+}
+
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const { slug } = params
     const artists = await getArtist(slug)
+    const metatags = await getMetatags(slug)
 
     return {
         props: {
-            artist: artists[0]
+            artist: artists[0],
+            metatags: metatags && metatags.length > 0 ? metatags[0] : { tags: {}}
         }
     }
 }
 
 
-const Artist: React.FC<StaticProps> = ({ artist }) => {
+const Artist: React.FC<StaticProps> = ({ artist, metatags }) => {
     const { name, bio, banners, bio_image, jobs } = artist
     const { isFallback } = useRouter()
 
@@ -125,10 +154,16 @@ const Artist: React.FC<StaticProps> = ({ artist }) => {
     const bioProps = { name, bio, bio_image }
     const jobsProps = { jobs, title: "Trabalhos", background: "black" }
 
+    const tagsKeys = Object.keys(metatags.tags)
+   
+
     return (
         <Container>
             <Head>
-                <title>Rama Records - Principal</title>
+                <title>Rama Records - {artist.name}</title>
+                {tagsKeys.map((key, i) => (
+                    <meta key={i} property={key} content={metatags.tags[key]} />
+                ))}
             </Head>
 
             <DefaultPage>
