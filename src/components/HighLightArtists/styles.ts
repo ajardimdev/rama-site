@@ -1,15 +1,18 @@
 import styled from 'styled-components';
 
+interface SectionProps {
+    background: string
+}
 
-export const Container = styled.section`
+export const Container = styled.section<SectionProps>`
     width: 100%;
     position: relative;
     background-color: #fff;
     width: 100%;
-    background: -webkit-linear-gradient(170deg, white 0%, white, 35%, #121214 35%, #121214 100%);
-    background: -o-linear-gradient(170deg, white 0%, white, 35%, #121214 35%, #121214 100%);
-    background: -moz-linear-gradient(170deg, white 0%, white, 35%, #121214 35%, #121214 100%);
-    background: linear-gradient(170deg, white 0%, white, 35%, #121214 35%, #121214 100%);
+    background: ${({ theme, background }) => background  === "white" ? theme.colors.section_white : "-webkit-linear-gradient(170deg, white 0%, white, 35%, #121214 35%, #121214 100%)" } ;
+    background: ${({ theme, background }) => background  === "white" ? theme.colors.section_white : "-o-linear-gradient(170deg, white 0%, white, 35%, #121214 35%, #121214 100%)" } ;
+    background: ${({ theme, background }) => background  === "white" ? theme.colors.section_white : "-moz-linear-gradient(170deg, white 0%, white, 35%, #121214 35%, #121214 100%)" } ;
+    background: ${({ theme, background }) => background  === "white" ? theme.colors.section_white : "linear-gradient(170deg, white 0%, white, 35%, #121214 35%, #121214 100%)" } ;
 
     img.mark_top_white {
         margin-top: -150px;

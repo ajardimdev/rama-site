@@ -165,7 +165,7 @@ export const Container = styled.section`
 
 
 
-export const Image = styled.img`
+export const ImageDiv = styled.div`
     width: 100%;
     animation: fadein 2s;
     -moz-animation: fadein 2s; /* Firefox */

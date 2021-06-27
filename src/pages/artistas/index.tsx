@@ -26,9 +26,7 @@ export const getArtists = async () => {
         }`
     })
 
-    console.log(ok)
     if (ok) {
-        console.log(data)
         return data.data.artists
     }
 }
@@ -58,6 +56,7 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 const Artistas: React.FC<StaticProps> = ({ artists }) => {
+    const artistsProps = { artists, title : "Artistas", background: "black" }
     return (
         <Container>
           <Head>
@@ -67,7 +66,7 @@ const Artistas: React.FC<StaticProps> = ({ artists }) => {
           <FakeHeaderPadding />
 
           <DefaultPage>
-            <HighlightArtists artists={artists} />
+            <HighlightArtists {...artistsProps} />
           </DefaultPage>
         </Container>
       )

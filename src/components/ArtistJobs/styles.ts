@@ -9,6 +9,9 @@ interface YouTubeProps {
 interface SpotifyProps {
     allowtransparency: boolean
 }
+interface SectionProps {
+    background: string
+}
 
 
 export const SpotifyPlayer = styled.iframe<SpotifyProps>`
@@ -34,16 +37,17 @@ export const YouTubePlayer = styled.iframe<YouTubeProps>`
 
 `
 
-export const Container = styled.section`
+export const Container = styled.section<SectionProps>`
     width: 100%;
     position: relative;
     background-color: #fff;
     width: 100%;
-    background: -webkit-linear-gradient(170deg, white 0%, white, 35%, #121214 35%, #121214 100%);
-    background: -o-linear-gradient(170deg, white 0%, white, 35%, #121214 35%, #121214 100%);
-    background: -moz-linear-gradient(170deg, white 0%, white, 35%, #121214 35%, #121214 100%);
-    background: linear-gradient(170deg, white 0%, white, 35%, #121214 35%, #121214 100%);
-    height: 100vh;
+    background: ${({ theme, background }) => background  === "white" ? theme.colors.section_white : "-webkit-linear-gradient(170deg, white 0%, white, 35%, #121214 35%, #121214 100%)" } ;
+    background: ${({ theme, background }) => background  === "white" ? theme.colors.section_white : "-o-linear-gradient(170deg, white 0%, white, 35%, #121214 35%, #121214 100%)" } ;
+    background: ${({ theme, background }) => background  === "white" ? theme.colors.section_white : "-moz-linear-gradient(170deg, white 0%, white, 35%, #121214 35%, #121214 100%)" } ;
+    background: ${({ theme, background }) => background  === "white" ? theme.colors.section_white : "linear-gradient(170deg, white 0%, white, 35%, #121214 35%, #121214 100%)" } ;
+    min-height: 100vh;
+    padding-bottom: 8em;
 
     img.mark_top_white {
         margin-top: -150px;
@@ -52,7 +56,8 @@ export const Container = styled.section`
 
     .album_content {
         position: relative;
-        background-color: #121214;
+        background-color: ${({ theme, background }) => background  === "white" ? theme.colors.section_white : theme.colors.section_black };
+        color: ${({ theme, background }) => background  === "white" ? theme.colors.black : theme.colors.white };
 
         &--in {
             padding-left: 15px;
@@ -73,7 +78,6 @@ export const Container = styled.section`
             left: 0;
             right: 0;
             z-index: 1;
-            background-color: #121214;
             left: 0;
             right: 0;
 
@@ -206,7 +210,7 @@ export const Container = styled.section`
 
 
 
-export const Image = styled.img`
+export const ImageDiv = styled.div`
     width: 100%;
     animation: fadein 2s;
     -moz-animation: fadein 2s; /* Firefox */

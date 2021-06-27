@@ -123,7 +123,7 @@ const Artist: React.FC<StaticProps> = ({ artist }) => {
     })
 
     const bioProps = { name, bio, bio_image }
-    const jobsProps = { jobs }
+    const jobsProps = { jobs, title: "Trabalhos", background: "black" }
 
     return (
         <Container>

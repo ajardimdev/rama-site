@@ -2,9 +2,13 @@ const theme = {
     colors: {
         background: '#121214',
         section: '#ffffff',
+        section_white: '#ffffff',
+        section_black: '#121214',
         text: '#e1e1e6',
         paragraph: '#33325C',
         titles: '#000',
+        black: '#000',
+        white: '#ffffff',
         primary: '#8257e6',
         default_overlay_image_color: "#00000094"
     },

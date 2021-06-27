@@ -9,25 +9,23 @@ import Link from 'next/link';
 
 const image_url = base_url
 
-function HighlightArtists({ artists }) {
+function HighlightArtists({ artists, title, background }) {
     if (!artists || (artists &&  !artists.length)){
         return null;
     }
 
      return (
-        <Container >
+        <Container background={background} >
             <img className="mark_top_white" src={mark_white_top} alt="" />
             <div className="title-area">
                 <img src={logo} alt="Rama" />
 
-                <h2>Artistas</h2>
+                <h2>{title ?? 'Artistas'}</h2>
             </div>
 
             <div className="carousel-area">
 
                 {artists.map((artist,index) => {
-                    console.log(`artist`)
-                    console.log(artist)
                     return (
                         <Link key={index} href={`/artistas/${artist.slug}`}  >
                             <figure key={index}>

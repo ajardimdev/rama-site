@@ -11,9 +11,9 @@ export const Container = styled.section`
 interface ImageProps {
     selected:boolean,
 }
-export const Image = styled.img<ImageProps>`
+export const ImageDiv = styled.div<ImageProps>`
     display: ${props => props.selected ? 'block': 'none'};
-    min-width: 890px;
+    /* min-width: 890px; */
     width: 100%;
     animation: fadein 2s;
 

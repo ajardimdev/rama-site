@@ -1,9 +1,10 @@
-import { Console } from 'console';
 import React, { useEffect, useState } from 'react';
+
+import Image from 'next/image'
 
 import { base_url } from '../../apis/rama-cms/constants';
 import { increment } from './functions';
-import { Container, Image } from './styles';
+import { Container, ImageDiv } from './styles';
 
 const image_url = base_url
 
@@ -20,7 +21,7 @@ function Banner({ images }) {
             const index = increment(0, selected, limit)
 
             setSelected(index)
-        }, 6000)
+        }, 8000)
     }, [selected])
 
     if (!images || (images &&  !images.length)){
@@ -29,12 +30,22 @@ function Banner({ images }) {
 
      return (
         <Container  >
-            {/* <video autoPlay muted loop  id="video">
-                <source src="/demo.mp4" type="video/mp4" />
-            </video> */}
-
             {images.map((image,index) => {
-                return <Image key={index} selected={selected === index} src={`${image_url}${image.media.url}`} alt={image.text} title={images[selected].text} />
+                if(image.type === 'video') {
+                    return (
+                        <ImageDiv selected={selected === index}>
+                            <video autoPlay muted loop  id="video" width="100%">
+                                <source src={`${image_url}${image.media.url}`} type="video/mp4" />
+                            </video>
+                        </ImageDiv>
+                    )
+                }
+
+                return  (
+                    <ImageDiv selected={selected === index}>
+                        <Image key={index} src={`${image_url}${image.media.url}`} alt={image.text} width={1440} height={720} layout="responsive"/>
+                    </ImageDiv>
+                )
             })}
 
         </Container>

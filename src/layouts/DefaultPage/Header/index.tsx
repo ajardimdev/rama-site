@@ -9,13 +9,6 @@ let listener
 
 const Menu = () => (
     <ul id='menu'>
-
-        <li>
-            <Link href='/a-rama'>
-                <a>Rama</a>
-            </Link>
-        </li>
-
         <li>
             <Link href='/artistas'>
                 <a>Artistas</a>
@@ -23,20 +16,12 @@ const Menu = () => (
         </li>
 
         <li>
-            <Link href='/estudio'>
-                <a>Estúdio</a>
+            <Link href='/lancamentos'>
+                <a>Lançamentos</a>
             </Link>
         </li>
     </ul>
 )
-
-const SearchButton = ({ search }) => {
-    return (
-        <a id='search' onClick={search}>
-            <Search />
-        </a>
-    )
-}
 
 const Header: React.FC = () => {
   const [scrollY, setScrollY] = useState(0)
@@ -68,8 +53,6 @@ const Header: React.FC = () => {
             </Link>
             <nav id='menu-mobile' className={toggleMobile ? 'on' : ''} >
 
-                <SearchButton search={search} />
-
                 <a id="toggle" onClick={toggleMenuMobile} >
                     <div className="one"></div>
                     <div className="two"></div>
@@ -81,12 +64,10 @@ const Header: React.FC = () => {
             <nav id='menu-desktop' >
                 <Menu />
             </nav>
-
-            <SearchButton search={search} />
         </div>
 
-
         {toggleMobile && <Menu />}
+
 
 
     </Container>

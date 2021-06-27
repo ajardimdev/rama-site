@@ -4,8 +4,10 @@ import ReactMarkdown from 'react-markdown'
 import logo from '../../assets/logo_small.png'
 import mark_white_top from '../../assets/mark-white-top.png'
 
+import Image from 'next/image'
+
 import { base_url } from '../../apis/rama-cms/constants';
-import { Container, Image } from './styles';
+import { Container, ImageDiv } from './styles';
 const image_url = base_url
 
 function Bio({ name, bio, bio_image }) {
@@ -20,7 +22,9 @@ function Bio({ name, bio, bio_image }) {
 
             <div className="bio">
                 {bio_image && (
-                    <img src={`${image_url}${bio_image.url}`} alt={bio} />
+                    <ImageDiv >
+                        <Image src={`${image_url}${bio_image.url}`} alt={bio} width={640} height={490} layout="responsive"/>
+                    </ImageDiv>
                 )}
 
                 <div className="card_bio">

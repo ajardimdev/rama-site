@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-
+import Image from 'next/image'
 import logo from '../../assets/logo_small.png'
 import mark_white_top from '../../assets/mark-white-top.png'
-import { base_url } from '../../apis/rama-cms/constants';
-import { Container, Image, SpotifyPlayer, YouTubePlayer } from './styles';
-
+import { base_url } from '../../apis/rama-cms/constants'
+import { Container, ImageDiv, SpotifyPlayer, YouTubePlayer } from './styles'
 interface ArtistJobsProps {
-    jobs: Job[]
+    jobs: Job[],
+    title: string,
+    background: string
 }
 
 interface Media {
@@ -23,7 +24,7 @@ interface Job {
 
 const image_url = base_url
 
-const ArtistJobs: React.FC<ArtistJobsProps> = ({ jobs }) => {
+const ArtistJobs: React.FC<ArtistJobsProps> = ({ jobs, title, background }) => {
   const [open, setOpen] = useState(null)
 
   function openAlbum(e, index) {
@@ -38,12 +39,12 @@ const ArtistJobs: React.FC<ArtistJobsProps> = ({ jobs }) => {
   }
 
   return (
-    <Container>
+    <Container background={background}>
         <img className="mark_top_white" src={mark_white_top} alt="" />
 
         <div className="title-area">
             <img src={logo} alt="Rama" />
-            <h2>Trabalhos</h2>
+            <h2>{title ?? "Lançamentos"}</h2>
         </div>
 
         <div className="carousel-area">
@@ -52,7 +53,10 @@ const ArtistJobs: React.FC<ArtistJobsProps> = ({ jobs }) => {
                         <div key={index} className="album">
                             <a onClick={e => openAlbum(e, index)}>
                                 <figure key={index} >
-                                    <Image src={`${image_url}${job.image.url}`} alt={job.name} title={job.name} />
+                                    <ImageDiv>
+                                        <Image key={index} src={`${image_url}${job.image.url}`} alt={job.name} width={300} height={300} layout="responsive"/>
+                                    </ImageDiv>
+
                                     <figcaption>
                                         <div>
                                             <span>{job.name}</span>
