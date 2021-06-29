@@ -29,7 +29,7 @@ function HighlightArtists({ artists, title, background }) {
                     return (
                         <Link key={index} href={`/artistas/${artist.slug}`}  >
                             <figure key={index}>
-                                    <Image src={`${image_url}${artist.highlight_image.url}`} alt={artist.name} title={artist.name} />
+                                    <Image src={artist.highlight_image.url} alt={artist.name} title={artist.name} />
                                 <figcaption>
                                     <div>
                                         <span>{artist.name}</span>

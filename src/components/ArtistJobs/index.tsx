@@ -54,7 +54,7 @@ const ArtistJobs: React.FC<ArtistJobsProps> = ({ jobs, title, background }) => {
                             <a onClick={e => openAlbum(e, index)}>
                                 <figure key={index} >
                                     <ImageDiv>
-                                        <Image key={index} src={`${image_url}${job.image.url}`} alt={job.name} width={300} height={300} layout="responsive"/>
+                                        <Image key={index} src={job.image.url} alt={job.name} width={300} height={300} layout="responsive"/>
                                     </ImageDiv>
 
                                     <figcaption>
