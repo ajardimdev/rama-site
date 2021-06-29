@@ -57,10 +57,10 @@ export const Container = styled.section<SectionProps>`
         }
         figcaption {
             opacity: 1;
-            animation: fadein 2s;
-            -moz-animation: fadein 2s; /* Firefox */
-            -webkit-animation: fadein 2s; /* Safari and Chrome */
-            -o-animation: fadein 2s; /* Opera */
+            animation: fadein .3s;
+            -moz-animation: fadein .3s; /* Firefox */
+            -webkit-animation: fadein .3s; /* Safari and Chrome */
+            -o-animation: fadein .3s; /* Opera */
         }
     }
 
@@ -133,12 +133,12 @@ export const Container = styled.section<SectionProps>`
 
 
 
-export const Image = styled.img`
+export const ImageDiv = styled.div`
     width: 100%;
-    animation: fadein 2s;
-    -moz-animation: fadein 2s; /* Firefox */
-    -webkit-animation: fadein 2s; /* Safari and Chrome */
-    -o-animation: fadein 2s; /* Opera */
+    animation: fadein .3s;
+    -moz-animation: fadein .3s; /* Firefox */
+    -webkit-animation: fadein .3s; /* Safari and Chrome */
+    -o-animation: fadein .3s; /* Opera */
     border-radius: 4px;
     @keyframes fadein {
         from {

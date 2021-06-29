@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
+import Image from 'next/image'
 import logo from '../../assets/logo_small.png'
 import mark_white_top from '../../assets/mark-white-top.png'
 
-import { base_url } from '../../apis/rama-cms/constants';
-import { Container, Image } from './styles';
+import { Container, ImageDiv } from './styles';
 import Link from 'next/link';
 
-const image_url = base_url
 
 function HighlightArtists({ artists, title, background }) {
     if (!artists || (artists &&  !artists.length)){
@@ -29,7 +28,7 @@ function HighlightArtists({ artists, title, background }) {
                     return (
                         <Link key={index} href={`/artistas/${artist.slug}`}  >
                             <figure key={index}>
-                                    <Image src={artist.highlight_image.url} alt={artist.name} title={artist.name} />
+                                    <Image src={artist.highlight_image.url} alt={artist.name} title={artist.name} width="480" height="720" />
                                 <figcaption>
                                     <div>
                                         <span>{artist.name}</span>

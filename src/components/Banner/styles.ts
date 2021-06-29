@@ -15,7 +15,10 @@ export const ImageDiv = styled.div<ImageProps>`
     display: ${props => props.selected ? 'block': 'none'};
     /* min-width: 890px; */
     width: 100%;
-    animation: fadein 2s;
+    animation: fadein .7s;
+    -moz-animation: fadein .7s; /* Firefox */
+    -webkit-animation: fadein .7s; /* Safari and Chrome */
+    -o-animation: fadein .7s; 
 
     @keyframes fadein {
         from {

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Logo from '../../../assets/logo-horizontal-white_90.svg'
-import Search from '../../../assets/search-light.svg'
+import Logo from '../../../assets/logo-horizontal-white_90.png'
 import Link from 'next/link'
 
 import { Container } from './styles'
@@ -49,7 +48,7 @@ const Header: React.FC = () => {
     <Container scrollY={scrollY} >
         <div className="header">
             <Link href="/">
-                <Logo />
+                <img src={Logo} alt="Rama Records" />
             </Link>
             <nav id='menu-mobile' className={toggleMobile ? 'on' : ''} >
 
