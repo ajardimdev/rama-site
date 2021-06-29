@@ -65,6 +65,11 @@ export const Container = styled.section`
     margin-bottom:12px;
     text-align: justify;
 }
+@media(max-width:768px){
+    div.image-build {
+        display:none;
+    }
+}
 
  @media(min-width: 768px) {
     .card_bio {

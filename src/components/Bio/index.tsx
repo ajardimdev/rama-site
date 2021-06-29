@@ -22,7 +22,7 @@ function Bio({ name, bio, bio_image }) {
 
             <div className="bio">
                 {bio_image && (
-                    <ImageDiv >
+                    <ImageDiv className="image-build" >
                         <Image src={bio_image.url} alt={bio} width={640} height={490} layout="responsive"/>
                     </ImageDiv>
                 )}
